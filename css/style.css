@@ -98,7 +98,7 @@ a:active, a:link, a:visited, a:hover {
 }
 
 .guide .logo {
-  background: url("/img/logo.png") no-repeat;
+  background: url("../img/logo.png") no-repeat;
   background-size: 100%;
   width: 200px;
   height: 110px;
