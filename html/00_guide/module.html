@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, user-scalable=yes"><!--PC 최소 PXF로 고정하기! 프로젝트에 따라 변경 가능성-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="Description" content="사이트 설명">
+  <link rel="shortcut icon" href="http://img.gomtv.com/gomtv_favicon_20140514.ico" type="image/x-icon">
+  <title>UI Guide</title> <!-- [페이지명 | 사이트명] -->
+  <script src="//www.gomlab.com/gomlab_v2/ui/js/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <!--<script type="text/javascript" src="//www.xxxx/jquery-1.12.4.min.js"></script>-->
+  <!-- <script type="text/javascript" src="/js/ui_jquery.js"></script> -->
+  <!-- script or style -->
+</head>
+<style>
+  .guide h1, .guide h2, .guide h3{line-height:1;}
+  .guide nav{margin-top: 0;}
+</style>
+<body id="body" class="guide">
+  <ul class="quick">
+  	<li><a href="#body">Top</a></li>
+  	<li><a href="#footer">Down</a></li>
+  	<li><a href="/html/index.html">index</a></li>
+  </ul>
+  <section class="container">
+    <h1 class="point">GOM & Company UI Guide 모듈</h1>
+    <article class="cont">
+      <h2>🎯 공통</h2>
+      <ul class="list">
+        <li>- 가이드 페이지는 body에 guide 클래스 추가</li>
+        <li>- 각 주제별로 cont 클래스로 구분</li>
+        <li>- .logo : ui guide gom&company 로고</li>
+        <li>- .cont 타이틀은 h2로 사용</li>
+        <li>- .red : <span class="red">#e53434</span>, .blue : <span class="blue">#2a84b0</span>, .gom : <span class="gom">#ff7600</span>, .point : <span class="point">#957963</span> </li>
+        <li>- .desc : <span class="desc">설명하는 글</span></li>
+        <li>- .list : 목록 글 (ul>li)</li>
+      </ul>
+    </article>
+    <article class="cont">
+      <h2>🎯 제목 태그</h2>
+      <h1>h1 : 페이지 타이틀 <span class="desc">font-size:36px; margin-bottom:30px;</span></h1>
+      <h2>h2 : 내용 타이틀 <span class="desc">font-size:32px; margin-bottom:40px;</span></h2>
+      <h3>h3 : 각 주제 타이틀 <span class="desc">font-size:24px; margin:50px 0 30px;</span></h3>
+    </article>
+    <article class="cont">
+      <h2>🎯 탭</h2>
+      <ul class="list">
+        <li>- 구조 : nav > ul > li > a</li>
+      </ul>
+      <nav>
+        <ul>
+          <li><a href="#common">공통</a></li>
+          <li><a href="#naming">Naming</a></li>
+          <li><a href="#html">HTML</a></li>
+          <li><a href="#style">스타일</a></li>
+          <li><a href="#style">스타일</a></li>
+          <li><a href="#compression">이미지 압축</a></li>
+        </ul>
+      </nav>
+    </article>
+    <article class="cont">
+      <h2>🎯 테이블</h2>
+      <h3>.tbl</h3>
+      <table class="tbl">
+        <colgroup>
+          <col style="width: 20%;">
+          <col style="width: 30%;">
+          <col style="">
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">분류</th>
+          <th scope="col">prefix</th>
+          <th scope="col">부가설명</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>타이틀</td>
+          <td>tit</td>
+          <td>일반적인 타이틀</td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="cont">
+      <h2>🎯 코드</h2>
+      <pre class="code">
+&lt;pre class="code"&gt;
+    ...
+&lt;/pre&gt;
+</pre>
+    </article>
+  </section>
+  <h2></h2>
+</body>
+</html>
