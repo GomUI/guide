@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#ffffff">
   <meta name="Description" content="사이트 설명">
-	<link rel="shortcut icon" href="//gomui.github.io/guide/img/common/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="http://img.gomtv.com/gomtv_favicon_20140514.ico" type="image/x-icon">
   <title>GULP | UI Guide</title> <!-- [페이지명 | 사이트명] -->
-	<script src="//gomui.github.io/guide/ui_js/jquery-1.12.4.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="//gomui.github.io/guide/css/style.css?v=190919">
-	<script type="text/javascript" src="//gomui.github.io/guide/ui_js/ui.js"></script>
-
+  <script src="//www.gomlab.com/gomlab_v2/ui/js/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script type="text/javascript" src="/ui_js/ui.js"></script>
 
 </head>
 <body id="body">
 <ul class="quick">
-	<li><a href="#body">Top</a></li>
-	<li><a href="#footer">Down</a></li>
-	<li><a href="/html/index.html">index</a></li>
+  <li><a href="#body">Top</a></li>
+  <li><a href="#footer">Down</a></li>
+  <!--<li><a href="/html/index.html">index</a></li>-->
+  <li><a href="/guide/html/index.html">index</a></li> <!--github 업데이트용 -->
 </ul>
 <header>
-  <h1 class="logo" c>logo</h1>
+  <h1 class="logo">logo</h1>
   <p class="sub_tit"><strong>- Gulp 세팅 -</strong></p>
 </header>
 <nav>
@@ -36,7 +36,7 @@
     <h2>🥤 신규 프로젝트 세팅</h2>
     <h3>01. Node.js 설치</h3>
     <a href="https://nodejs.org/ko/" target="_blank">https://nodejs.org/ko/</a> 설치 후 npm -v 으로 버전 확인
-    <p>현재 사용 버전 : v8.10.0</p>
+    <p>현재 사용 버전 : v10.15.1</p>
     <h3>02. gitlab</h3>
     <ul class="list num">
       <li>1) <a href="https://gitlab.gomtv.com/ui/ui_template" target="_blank">https://gitlab.gomtv.com/ui/ui_template</a>에서 fork떠 신규 프로젝트 생성</li>
@@ -47,7 +47,8 @@
       <li>
         6) terminal 에서 <span class="gom">npm install</span> 입력
         <p class="desc"> ackage.json에 이미 세팅을 해서, 필요한 모듈만 설치해 준다.</p>
-        <p class="desc"> gulp는 3.9.1 설치해야 한다. 4이상을 설치시 바벨 때문에 오류 남. 추후에 개발환경을 변경 할 수 있음</p>
+        <p class="desc"> <del>gulp는 3.9.1 설치해야 한다. 4이상을 설치시 바벨 때문에 오류 남. 추후에 개발환경을 변경 할 수 있음</del></p>
+        <p class="desc"> 2020년 gulp 버전을 4.0.2로 업데이트. 기존 프로젝트들도 모두 4.0.2로 업데이트 하였음</p>
       </li>
       <li>6) terminal 에서 <span class="gom">gulp</span> 입력<p class="desc">gulp 실행</p></li>
       <li>4) readme.md에 새로운 프로젝트 가이드 작성</li>
@@ -80,7 +81,7 @@
         <p class="desc">
           package.json 참고 : <a href="https://elegantcoder.com/beginning-npm-package/" target="_blank">https://elegantcoder.com/beginning-npm-package/</a>
         </p>
-<pre class="code">
+        <pre class="code">
 # gulp를 전역에 설치하기
 $ npm install -g gulp
 # 프로젝트 폴더에 package.json 만들기
@@ -89,7 +90,7 @@ $ npm init
       </li>
     </ul>
     <h3>3. 디렉토리 구조</h3>
-<pre class="code">
+    <pre class="code">
 project_name
     ├── dist
             ├── css
@@ -120,10 +121,125 @@ project_name
       <li>- gulp spritesmith를 사용하면 스프라이트 이미지와 css를 자동으로 생성해준다.<br>설정은  sprite.css.handlebars로 할수있다.<br>
         <span class="desc">추가할때마다 달라져서 현재는 잘 사용안함</span>
       </li>
-	  <li>📌 <a href="https://gulpjs.com/" target="_blank">gulp plugin은 이 사이트에서 확인 가능</a></li>
+      <li>📌 <a href="https://gulpjs.com/" target="_blank">gulp plugin은 이 사이트에서 확인 가능</a></li>
     </ul>
-<pre class="code">
-<strong class="blue">gulpfile.js</strong>
+    <pre class="code">
+<strong class="blue">gulpfile.js [버전 4.0.2]</strong>
+<span class="blue">const</span> gulp = require('gulp');
+<span class="blue">const</span> browsersync = require('browser-sync').create();
+<span class="blue">const</span> html = require('gulp-html-tag-include');
+<span class="blue">const</span> sass = require('gulp-sass');
+<span class="blue">const</span> autoprefixer = require('gulp-autoprefixer');
+<span class="blue">const</span> sourcemaps = require('gulp-sourcemaps');
+<span class="blue">const</span> uglify = require('gulp-uglify');
+
+<span class="blue">const</span> paths = {
+  port: '9004', // 각 프로젝트 포트넘버
+  input: './src/**/*',
+  output: './dist/',
+  html: {
+    input: './src/**/*.html',
+    output: './dist/'
+  },
+  style: {
+    input: './src/scss/*.scss',
+    output: './dist/css'
+  },
+  img: {
+    input: './src/img/**/*',
+    output: './dist/img/'
+  },
+  font: {
+    input: './src/font/**/*',
+    output: './dist/font'
+  },
+  js: {
+    input: './src/ui_js/*.js',
+    output: './dist/ui_js/'
+  },
+  file: {
+    input: './src/file/**/*',
+    output: './dist/file/'
+  }
+};
+
+<span class="blue">function</span> browserSync(done) {
+  console.log("start sync...");
+  browsersync.init({
+    port: paths.port,
+    server: {
+      baseDir: paths.html.output
+    },
+    startPath: './html/index.html' //index.html 일반 프로젝트에서는 index.html 로 변경
+  });
+  done();
+}
+
+<span class="blue">function</span> htmlComp() {
+  return gulp.src(paths.html.input)
+    .pipe(html())
+    .pipe(gulp.dest(paths.html.output))
+    .pipe(browsersync.reload({stream: true}));
+}
+
+<span class="blue">function</span> sassComp(done) {
+  gulp.src(paths.style.input, {sourcemaps: true})
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass({outputStyle: 'expanded'})) //nested, expanded, compact, compressed
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.style.output))
+    .pipe(browsersync.reload({stream: true}));
+  // 압축버전 - 이버전은 소스맵이 안맞아서 배포용으로 따로 뺌
+  gulp.src(paths.style.input, {sourcemaps: true})
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(sass({outputStyle: 'compressed'})) //nested, expanded, compact, compressed
+    .pipe(gulp.dest(paths.style.output + '/min'));
+  done();
+}
+
+<span class="blue">function</span> js() {
+  return gulp.src(paths.js.input)
+    .pipe(gulp.dest(paths.js.output))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.js.output + '/min'))
+    .pipe(browsersync.reload({stream: true}));
+}
+
+<span class="blue">function</span> img() {
+  return gulp.src(paths.img.input)
+    .pipe(gulp.dest(paths.img.output))
+    .pipe(browsersync.reload({stream: true}));
+}
+
+<span class="blue">function</span> font() {
+  return gulp.src(paths.font.input)
+    .pipe(gulp.dest(paths.font.output))
+    .pipe(browsersync.reload({stream: true}));
+}
+
+<span class="blue">function</span> file() {
+  return gulp.src(paths.file.input)
+    .pipe(gulp.dest(paths.file.output))
+    .pipe(browsersync.reload({stream: true}));
+}
+
+<span class="blue">function</span> watchFiles() {
+  gulp.watch(paths.html.input, htmlComp);
+  gulp.watch(paths.img.input, img);
+  gulp.watch(paths.style.input, sassComp);
+  gulp.watch(paths.js.input, js);
+  gulp.watch(paths.font.input, font);
+  gulp.watch(paths.file.input, file);
+
+}
+
+// export tasks
+exports.default = gulp.series(gulp.parallel(htmlComp, sassComp, img, js, font, file), browserSync, watchFiles);
+</pre>
+
+    <pre class="code">
+<strong class="blue">gulpfile.js [버전 3.9.1 히스토리]</strong>
 <span class="blue">var</span> gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     html = require('gulp-html-tag-include'),
@@ -179,7 +295,7 @@ project_name
     gulp.task('default',['browserSync','watch']);
 </pre>
 
-<pre class="code">
+    <pre class="code">
   <strong class="blue">sprite.css.handlebars</strong>
   .spurl {
     	display:inline-block;
