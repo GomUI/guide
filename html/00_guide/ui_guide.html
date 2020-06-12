@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#ffffff">
   <meta name="Description" content="사이트 설명">
-  <link rel="shortcut icon" href="//gomui.github.io/guide/img/common/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="http://img.gomtv.com/gomtv_favicon_20140514.ico" type="image/x-icon">
   <title>UI Guide</title> <!-- [페이지명 | 사이트명] -->
-  <script src="//gomui.github.io/guide/ui_js/jquery-1.12.4.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="//gomui.github.io/guide/css/style.css?v=190919">
-  <script type="text/javascript" src="//gomui.github.io/guide/ui_js/ui.js"></script>
-
-
+  <script src="//www.gomlab.com/gomlab_v2/ui/js/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+   <script type="text/javascript" src="/ui_js/ui.js"></script>
+  
 </head>
 <body id="body">
 <ul class="quick">
 	<li><a href="#body">Top</a></li>
 	<li><a href="#footer">Down</a></li>
-	<li><a href="/html/index.html">index</a></li>
+	<!--<li><a href="/html/index.html">index</a></li>-->
+	<li><a href="/guide/html/index.html">index</a></li> <!--github 업데이트용 -->
 </ul>
 <header>
-  <h1 class="logo" c>logo</h1>
+  <h1 class="logo">logo</h1>
   <p class="sub_tit"><strong>- UI 가이드 -</strong></p>
 </header>
 <nav class="">
@@ -127,14 +127,13 @@ src
       </li>
       <li>- id는 반드시 유니크 해야한다.</li>
       <li>- id는 퀵네비 또는 페이지내 이동 시를 제외하고 사용하지 않는다.</li>
-      <li>- id는 camelcase 방식으로 하며, class는 underscore 방식으로 사용한다.</li>
+      <li>- id와 class는 underscore 방식으로 사용한다.</li>
       <li>
         -  헷갈릴 소제가 있는 이름 경우 절대 단독클레스로 사용하지 않는다(전역사용 x, 중복클레스사용 o)
         <p class="desc">ex) left, right, top, bottom, big, box 등 (x)  .btn.big, cont.left(o)</p>
       </li>
       <li>
-        - class 이름은 기능을 알수있게 명확하게 표시
-        <p class="desc">ex) tbl1 (x), `tbl board(o)`</p>
+        - class 이름은 기능을 알수있게 명확하게 표시한다.
       </li>
       <li>
         - 공통요소는 common.ccss
@@ -166,17 +165,14 @@ src
         <td>일반적인 타이틀</td>
       </tr>
       <tr>
-        <td rowspan="3">영역</td>
-        <td>section</td>
-        <td>제목 태그(Heading Tag)를 지닌 영역 구분 (선택적 사용, 중첩사용 지양)</td>
-      </tr>
-      <tr>
-        <td>wrap</td>
-        <td>일반 영역의 묶음 (선택적 사용, 중첩사용 지양)</td>
-      </tr>
-      <tr>
-        <td>inner</td>
-        <td>부모 wrapper 가 존재하며 자식 묶음이 단독으로 필요한 경우</td>
+        <td>영역</td>
+        <td>
+          &lt;body&gt; <br>
+          &lt;main&gt; <br>
+          &lt;section&gt;(복수 사용) <br>
+          .bx_
+        </td>
+        <td></td>
       </tr>
       <tr>
         <td rowspan="3">내비게이션</td>
@@ -190,11 +186,6 @@ src
       <tr>
         <td>snb</td>
         <td>사이드 내비게이션(좌측메뉴)</td>
-      </tr>
-      <tr>
-        <td>패딩 여백 없음</td>
-        <td>nopd</td>
-        <td></td>
       </tr>
       <tr>
         <td>list에서 데이터가 없을때</td>
@@ -218,35 +209,20 @@ src
       </tr>
       <tr>
         <td rowspan="3">폼</td>
-        <td>inp</td>
+        <td>ipt</td>
         <td>input 타입 radio, checkbox, file 등</td>
       </tr>
       <tr>
-        <td>selc</td>
+        <td>sel</td>
         <td></td>
       </tr>
       <tr>
-        <td>label</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>버튼 박스</td>
-        <td>btns</td>
+        <td>lab</td>
         <td></td>
       </tr>
       <tr>
         <td>버튼</td>
         <td>btn</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>박스</td>
-        <td>bx</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>아이콘 박스</td>
-        <td>icos</td>
         <td></td>
       </tr>
       <tr>
@@ -261,7 +237,7 @@ src
       </tr>
       <tr>
         <td>섬네일 이미지</td>
-        <td>thum</td>
+        <td>thumb</td>
         <td></td>
       </tr>
       <tr>
@@ -275,7 +251,7 @@ src
         <td></td>
       </tr>
       <tr>
-        <td rowspan="5">텍스트</td>
+        <td rowspan="6">텍스트</td>
         <td>txt</td>
         <td>일반 텍스트</td>
       </tr>
@@ -285,24 +261,24 @@ src
       </tr>
       <tr>
         <td>num</td>
-        <td>ex) num1, num2, ... - 숫자 사용 시 언더바(underscore) 사용 X</td>
+        <td>ex) num, num2, ... - 숫자 사용 시 언더바(underscore) 사용 X</td>
       </tr>
       <tr>
         <td>copyright</td>
         <td></td>
       </tr>
       <tr>
-        <td>time</td>
-        <td>날짜 및 시간</td>
+        <td>&lt;time&gt;</td>
+        <td>시간 태그</td>
       </tr>
       <tr>
-        <td rowspan="2">링크</td>
+        <td>date</td>
+        <td>날짜</td>
+      </tr>
+      <tr>
+        <td>링크</td>
         <td>link</td>
         <td>일반 링크</td>
-      </tr>
-      <tr>
-        <td>more</td>
-        <td>더 보기 링크</td>
       </tr>
       <tr>
         <td>팝업 박스</td>
@@ -320,18 +296,8 @@ src
         <td>ex) pop pop_message</td>
       </tr>
       <tr>
-        <td>레이어</td>
-        <td>layer</td>
-        <td></td>
-      </tr>
-      <tr>
         <td>광고</td>
         <td>ad</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>상세내용</td>
-        <td>desc</td>
         <td></td>
       </tr>
       <tr>
@@ -341,7 +307,7 @@ src
       </tr>
       <tr>
         <td>위치변화</td>
-        <td>top/mid/bot/left/right</td>
+        <td>top/mid/bottom/left/right</td>
         <td>지역 or 중복클래스로 사용</td>
       </tr>
       <tr>
